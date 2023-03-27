@@ -1,6 +1,7 @@
 import fastify from 'fastify'
 import { users } from './routes/users.js'
 import { login } from './routes/login.js'
+import { version } from './routes/version.js'
 
 export function createServer() {
   const app = fastify({
@@ -15,6 +16,7 @@ export function createServer() {
 
   app.register(users)
   app.register(login)
+  app.register(version)
 
   return app
 }
