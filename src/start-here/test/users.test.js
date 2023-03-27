@@ -8,5 +8,7 @@ t.test('GET /users', async t => {
     url: '/users',
   })
   t.equal(response.statusCode, 200)
-  t.same(response.json(), { users: ['john', 'jane'] })
+  t.same(response.json(), {
+    users: [{ username: 'john' }, { username: 'jane' }],
+  })
 })
