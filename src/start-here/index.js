@@ -3,7 +3,7 @@ import { users } from './routes/users.js'
 import { login } from './routes/login.js'
 import { version } from './routes/version.js'
 
-export function createServer() {
+export function createServer(config) {
   const app = fastify({
     logger: {
       transport: {
@@ -15,7 +15,7 @@ export function createServer() {
   app.log.info('Starting server')
 
   //Register fastify jwt plugin
-  app.register(import('@fastify/jwt'), { secret: 'supersecret' })
+  app.register(import('@fastify/jwt'), { secret: config.JWT_SECRET })
 
   app.register(users)
   app.register(login)
