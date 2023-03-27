@@ -6,10 +6,11 @@
   "version": "1.0.0",
   "scripts": {
     "start": "node --watch server",
-    "test": "echo 'todo'"
+    "test": "tap ./test/*.test.js"
   },
   "devDependencies": {
     "fluent-json-schema": "^4.1.0",
-    "pino-pretty": "^10.0.0"
+    "pino-pretty": "^10.0.0",
+    "tap": "^16.3.4"
   }
 }
