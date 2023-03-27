@@ -14,6 +14,9 @@ export function createServer() {
 
   app.log.info('Starting server')
 
+  //Register fastify jwt plugin
+  app.register(import('@fastify/jwt'), { secret: 'supersecret' })
+
   app.register(users)
   app.register(login)
   app.register(version)

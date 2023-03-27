@@ -1,3 +1,4 @@
+import errors from 'http-errors'
 import { S } from 'fluent-json-schema'
 
 export function login(fastify, opts, next) {
@@ -8,12 +9,18 @@ export function login(fastify, opts, next) {
         body: S.object()
           .prop('username', S.string().required())
           .prop('password', S.string().required()),
+        response: {
+          200: S.object().prop('token', S.string()),
+        },
       },
     },
     async request => {
       const { username, password } = request.body
+      if (username !== password) {
+        throw errors.Unauthorized()
+      }
       request.log.info('POST /login')
-      return { username, password }
+      return { token: fastify.jwt.sign({ username }) }
     }
   )
 
