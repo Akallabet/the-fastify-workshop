@@ -1,9 +1,9 @@
 import S from 'fluent-json-schema'
 
-export function user(fastify, opts, next) {
+export default async function user(fastify, opts, next) {
   fastify.route({
     method: 'GET',
-    url: '/user',
+    url: '/',
     onRequest: fastify.authenticate,
     schema: {
       response: {

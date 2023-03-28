@@ -1,9 +1,6 @@
 import fastify from 'fastify'
-import { users } from './routes/users.js'
-import { login } from './routes/login.js'
-import { version } from './routes/version.js'
-import { authentication } from './plugins/authentication.js'
-import { user } from './routes/user/index.js'
+import autoload from '@fastify/autoload'
+import { join } from 'desm'
 
 export function createServer(config) {
   const app = fastify({
@@ -15,12 +12,13 @@ export function createServer(config) {
   })
 
   app.log.info('Starting server')
-
-  app.register(authentication, config)
-  app.register(users)
-  app.register(user)
-  app.register(login)
-  app.register(version)
+  app.register(import('@fastify/autoload'), {
+    dir: join(import.meta.url, 'routes'),
+  })
+  app.register(autoload, {
+    dir: join(import.meta.url, 'plugins'),
+    options: config,
+  })
 
   return app
 }

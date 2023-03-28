@@ -1,4 +1,4 @@
-export function version(fastify, opts, next) {
+export default async function version(fastify, opts, next) {
   fastify.route({
     method: 'GET',
     url: '/version',

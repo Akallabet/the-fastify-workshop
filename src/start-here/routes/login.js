@@ -1,7 +1,7 @@
 import errors from 'http-errors'
 import { S } from 'fluent-json-schema'
 
-export function login(fastify, opts, next) {
+export default async function login(fastify, opts, next) {
   fastify.post(
     '/login',
     {

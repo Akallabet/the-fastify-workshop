@@ -1,6 +1,6 @@
 import fp from 'fastify-plugin'
 
-export const authentication = fp(function (fastify, opts, next) {
+const authentication = fp(function (fastify, opts, next) {
   // Register jwt with secret provided in opts
   fastify.register(import('@fastify/jwt'), {
     secret: opts.JWT_SECRET,
@@ -16,3 +16,4 @@ export const authentication = fp(function (fastify, opts, next) {
   })
   next()
 })
+export default authentication
