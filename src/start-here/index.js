@@ -3,6 +3,7 @@ import { users } from './routes/users.js'
 import { login } from './routes/login.js'
 import { version } from './routes/version.js'
 import { authentication } from './plugins/authentication.js'
+import { user } from './routes/user/index.js'
 
 export function createServer(config) {
   const app = fastify({
@@ -17,6 +18,7 @@ export function createServer(config) {
 
   app.register(authentication, config)
   app.register(users)
+  app.register(user)
   app.register(login)
   app.register(version)
 
