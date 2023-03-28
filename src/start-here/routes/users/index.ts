@@ -1,11 +1,12 @@
 import S from 'fluent-json-schema'
 import sql from '@nearform/sql'
+import { FastifyInstance } from 'fastify'
 
 function usersQuery() {
   return sql`SELECT * FROM users`
 }
 
-export default async function users(fastify, opts, next) {
+export default async function users(fastify: FastifyInstance) {
   fastify.route({
     method: 'GET',
     url: '/',
@@ -29,6 +30,4 @@ export default async function users(fastify, opts, next) {
       return { users: rows }
     },
   })
-
-  next()
 }

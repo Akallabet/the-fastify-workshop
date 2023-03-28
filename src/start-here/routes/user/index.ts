@@ -1,6 +1,7 @@
+import { FastifyInstance } from 'fastify'
 import S from 'fluent-json-schema'
 
-export default async function user(fastify, opts, next) {
+export default async function user(fastify: FastifyInstance) {
   fastify.route({
     method: 'GET',
     url: '/',
@@ -18,5 +19,4 @@ export default async function user(fastify, opts, next) {
       return { user: request.user }
     },
   })
-  next()
 }

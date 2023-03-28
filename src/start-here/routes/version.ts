@@ -1,4 +1,8 @@
-export default async function version(fastify, opts, next) {
+import { FastifyInstance } from 'fastify'
+
+export default async function version(
+  fastify: FastifyInstance
+): Promise<void> {
   fastify.route({
     method: 'GET',
     url: '/version',
@@ -7,6 +11,4 @@ export default async function version(fastify, opts, next) {
       return { version: '1.0.0' }
     },
   })
-
-  next()
 }

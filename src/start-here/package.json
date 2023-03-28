@@ -2,10 +2,9 @@
   "license": "CC-BY-SA-4.0",
   "name": "start-here",
   "main": "server.js",
-  "type": "module",
   "version": "1.0.0",
   "scripts": {
-    "start": "node --watch server",
+    "start": "ts-node-dev --project ./tsconfig.json server.ts",
     "test": "tap ./test/*.test.js"
   },
   "devDependencies": {

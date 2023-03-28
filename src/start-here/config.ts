@@ -7,21 +7,13 @@ const schema = Type.Strict(
     JWT_SECRET: Type.String(),
     LOG_LEVEL: Type.Optional(Type.String()),
     PRETTY_PRINT: Type.Optional(Type.Boolean()),
+    PG_CONNECTION_STRING: Type.String(),
   })
 )
-// S.object()
-//   .prop('JWT_SECRET', S.string().required())
-//   .prop('LOG_LEVEL', S.string().default('info'))
-//   .prop('PRETTY_PRINT', S.string().default(true))
-//   .valueOf()
 
-export default envSchema<EnvConfig>({
+export const config = envSchema<EnvConfig>({
   schema,
   dotenv: { path: join(__dirname, '.env') },
 })
 
-export type EnvConfig = {
-  JWT_SECRET: string
-  PRETTY_PRINT: boolean
-  LOG_LEVEL: string
-}
+export type EnvConfig = Static<typeof schema>
